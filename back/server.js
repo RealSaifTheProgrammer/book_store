@@ -5,6 +5,7 @@ import leadRoutes from "./routes/leadRoutes.js";
 import bookRoutes from "./routes/bookRoute.js";
 import dotenv from "dotenv";
 
+const PORT = process.env.PORT || 3000;
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,6 @@ app.use("/api/leads", leadRoutes);
 app.use("/book", bookRoutes);
 
 // server
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
