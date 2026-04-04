@@ -1,17 +1,54 @@
+/* Base responsive settings */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 header,
 main,
 footer {
-  margin: 10px;
+  margin: 20px auto;
+  max-width: 1200px;
 }
 
+/* Responsive image - FIXED */
 .cover {
-  border-radius: 4px;
+  border-radius: 8px;
+  width: auto;
+  max-width: 40%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  object-fit: cover;
 }
 
+/* Remove the fixed height on mobile */
+@media (max-width: 768px) {
+  .cover {
+    height: auto;
+    max-height: 300px;
+    width: auto;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cover {
+    max-height: 250px;
+    max-width: 95%;
+  }
+}
+
+/* Buy button styling */
 .buy {
   background-color: #1c252c;
   border: none;
@@ -19,12 +56,33 @@ footer {
   transition: all 200ms;
   cursor: pointer;
   padding: 0;
+  display: inline-block;
+  margin: 10px;
+}
 
-  a {
+.buy a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+/* Make button text wrap on small screens */
+@media (max-width: 600px) {
+  .buy {
     display: block;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+  }
+
+  .buy a {
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 14px;
+    padding: 12px 15px;
   }
 }
 
@@ -32,6 +90,112 @@ footer {
   transform: translateY(-2px);
   background-color: #2c3a44;
 }
+
 .buy:active {
   transform: translateY(2px);
+}
+
+/* Demo button */
+.demo_v {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  transition: all 200ms;
+}
+
+.demo_v:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .demo_v {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    font-size: 14px;
+  }
+}
+
+/* Animate content */
+.animate_content {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  padding: 0 15px;
+}
+
+.animate_content span {
+  line-height: 1.6;
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .animate_content span {
+    font-size: 14px;
+  }
+}
+
+/* Header title */
+.title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 20px;
+  }
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  footer {
+    font-size: 12px;
+    padding: 15px;
+  }
+}
+
+/* Responsive layout for buttons container */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Make buttons stack nicely */
+@media (max-width: 600px) {
+  main {
+    gap: 10px;
+  }
+
+  .buy,
+  .demo_v {
+    width: 90%;
+    max-width: 280px;
+  }
 }

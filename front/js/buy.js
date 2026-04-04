@@ -6,8 +6,17 @@ form.addEventListener("submit", async (e) => {
 
   const name = document.querySelector("#name").value;
   const email = document.querySelector("#email").value;
+  const submitBtn = form.querySelector('button[type="submit"]');
 
+  // Show loading state
   message.textContent = "جاري الإرسال...";
+  message.style.display = "block";
+  message.className = "";
+  submitBtn.disabled = true;
+  submitBtn.textContent = "جاري الإرسال...";
+
+  // Add artificial delay to see the message (remove in production)
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   try {
     const res = await fetch("http://localhost:3000/api/leads", {
@@ -24,11 +33,31 @@ form.addEventListener("submit", async (e) => {
       throw new Error(data.message || "حدث خطأ");
     }
 
-    message.textContent = "تم الإرسال بنجاح ✅";
+    message.textContent = "✅ تم الإرسال بنجاح";
+    message.className = "success";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "إرسـال";
+    setTimeout(() => {
+      form.reset();
+      message.style.display = "none"; // Hide message after reset
+      message.textContent = "";
+    }, 3000); // Wait 3 seconds before resetting
 
-    form.reset();
+    // Don't auto-clear - let user see it
+    // setTimeout(() => {
+    //   message.style.display = "none";
+    // }, 5000);
   } catch (err) {
-    message.textContent = "حدث خطأ ❌ حاول مرة أخرى";
+    message.textContent = "حدث خطأ حاول تغيير البريد الالكتروني";
+    message.className = "error";
     console.error(err);
+    submitBtn.disabled = false;
+    submitBtn.textContent = "إرسـال";
   }
+});
+
+form.addEventListener("reset", () => {
+  message.style.display = "none";
+  message.textContent = "";
+  message.className = "";
 });

@@ -2,7 +2,9 @@ fetch("http://localhost:3000/book")
   .then((res) => res.json())
   .then((data) => {
     document.getElementById("title").textContent = data.title;
-    document.getElementById("price").textContent = data.price;
+    document.querySelectorAll(".price").forEach((priceSpan) => {
+      priceSpan.textContent = data.price;
+    });
     document.getElementById("image").src = data.image;
     document.getElementById("desc1").textContent =
       data.descriptionToAnimate.first;
