@@ -3,6 +3,9 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import leadRoutes from "./routes/leadRoutes.js";
 import bookRoutes from "./routes/bookRoute.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
