@@ -19,13 +19,16 @@ form.addEventListener("submit", async (e) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   try {
-    const res = await fetch("http://localhost:3000/api/leads", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const res = await fetch(
+      "https://book-store-backend-liart.vercel.app/api/leads",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email }),
       },
-      body: JSON.stringify({ name, email }),
-    });
+    );
 
     const data = await res.json();
 

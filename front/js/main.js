@@ -1,4 +1,4 @@
-fetch("http://localhost:3000/book")
+fetch("https://book-store-backend-liart.vercel.app/book")
   .then((res) => res.json())
   .then((data) => {
     document.getElementById("title").textContent = data.title;
